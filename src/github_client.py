@@ -20,12 +20,14 @@ class GithubClient:
         '''
 
         url = self.BASE_URL + f"/users/{username}/repos"
+        
         try:
             response = requests.get(url, timeout=10)
             response.raise_for_status()
-        except requests.exceptions.HTTPError:
+
+        except requests.exceptions.HTTPError as e:
             if response.status_code == 404:
-                raise ValueError("User not found")
+                raise ValueError("Usuário não encontrado")
             elif response.status_code == 403:
                 raise ValueError("Limit de requisições atingida")
             else:
@@ -35,7 +37,7 @@ class GithubClient:
             raise ConnectionError ("Falha na conexão com o servidor")
 
         except requests.exceptions.Timeout:
-            raise "A requisição demorou demais"
+            raise TimeoutError ("A requisição demorou demais")
 
         data = response.json()
         return [Repository.from_api(repo) for repo in data]

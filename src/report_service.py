@@ -62,3 +62,27 @@ class ReportService():
             for repo in self.repositories
         ]
         return dict(Counter(languages))
+    
+    #--------------------------------
+    #Resumo para exportação CSV
+    #---------------------------------
+
+    def generate_summary(self) -> list[dict]:
+        '''
+        Gera um resumo do relatório para 
+        exportação em CSV.
+
+        Returns:
+            list[dict]: lista contendo metricas e valores.
+                    
+        '''
+        sumary = [
+            {"metric": "total_repositories", "value": self.total_repositories()},
+            {"metric": "total_stars", "value": self.total_stars()},
+            
+        ]
+        for lang, total in self.count_by_language().items():
+            sumary.append(
+                {"metric": f"language_{lang}", "value": total}
+            )
+        return sumary    
