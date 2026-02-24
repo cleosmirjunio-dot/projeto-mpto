@@ -67,8 +67,6 @@ python3 -m github_report.main --username torvalds --out ./output
 
 ---
 
-## 📥 Parâmetros
-
 ## 📥 Parâmetros de Linha de Comando
 
 O projeto utiliza argumentos via terminal para definir o usuário do GitHub e o diretório de saída do relatório.
