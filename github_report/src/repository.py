@@ -1,5 +1,3 @@
-import requests
-
 class Repository:
     """
     Representa um repositório do GitHub dentro do domínio da aplicação.

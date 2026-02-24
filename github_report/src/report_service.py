@@ -39,12 +39,14 @@ class ReportService():
     def top_5_by_stars(self) -> list[Repository]:
         """
         Retorna os 5 repositórios com mais estrelas 
+            return
+                sorted() cria uma lista ordenada
         """
         return sorted(
             self.repositories,
             key=lambda repo: repo.stargazers_count,
-            reverse=True
-        )[:5]
+            reverse=True #ordena do maior para o menor 
+        )[:5]#pega apenas os 5 primeiros
     
     # ======== Contagem por linguagem ============
 
