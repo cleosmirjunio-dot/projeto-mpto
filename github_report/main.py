@@ -90,6 +90,7 @@ def main():
 
     
     repos_dict = [repo.to_dict() for repo in repos]
+    
     try:
         storage = FileStorage(base_path=output_dir)
     except PermissionError as e:
