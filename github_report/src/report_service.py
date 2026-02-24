@@ -22,9 +22,8 @@ class ReportService():
 
         return "\n".join(lines)
 
-    # ----------------------------
-    # Métricas Básicas
-    # ----------------------------
+    # ====== Métricas Básicas =========
+    
 
     def total_repositories(self) -> int:
         '''Retorna o total de repositórios'''
@@ -33,9 +32,8 @@ class ReportService():
     def total_stars(self) -> int:
         '''Retorna a soma total de estrelas'''
         return sum(repo.stargazers_count for repo in self.repositories)
-    # ----------------------------
-    # Top 5 estrelas
-    # ----------------------------
+
+    # ======= Top 5 estrelas ===========   
 
 
     def top_5_by_stars(self) -> list[Repository]:
@@ -48,9 +46,7 @@ class ReportService():
             reverse=True
         )[:5]
     
-    # ----------------------------
-    # Contagem por linguagem
-    # ----------------------------
+    # ======== Contagem por linguagem ============
 
     def count_by_language(self) -> dict[str, int]:
         """
@@ -63,9 +59,7 @@ class ReportService():
         ]
         return dict(Counter(languages))
     
-    #--------------------------------
-    #Resumo para exportação CSV
-    #---------------------------------
+    #======= Resumo para exportação CSV ============
 
     def generate_summary(self) -> list[dict]:
         '''

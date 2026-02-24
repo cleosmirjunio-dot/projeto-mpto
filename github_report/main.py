@@ -56,6 +56,8 @@ def main():
         return
 
     report = ReportService(repos)
+
+    
  # ===== Exibe o relatório no terminal =====
     
 

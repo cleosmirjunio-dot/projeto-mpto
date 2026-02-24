@@ -21,6 +21,7 @@ class GithubClient:
 
         url = self.BASE_URL + f"/users/{username}/repos"
         
+        #=========Tratamento de erros =============
         try:
             response = requests.get(url, timeout=10)
             response.raise_for_status()
@@ -39,7 +40,7 @@ class GithubClient:
         except requests.exceptions.Timeout:
             raise TimeoutError ("A requisição demorou demais")
 
-        data = response.json()
+        data = response.json()# Pega o corpo da resposta HTTP e converte de JSON(texto), para objeto Pyton
         return [Repository.from_api(repo) for repo in data]
     
 
