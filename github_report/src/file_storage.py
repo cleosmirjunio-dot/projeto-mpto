@@ -19,8 +19,7 @@ class FileStorage:
             raise PermissionError(
                 "Sem permisão para acessar ou criar o diretório informado"
                 "\nOs Arquivos não foram gerados"
-            )
-    
+            ) 
 
     def save_json(self, filename: str, data:list[dict]) -> str:
         """
@@ -52,7 +51,7 @@ class FileStorage:
 
         with open(file_path, "w", newline="", encoding="utf-8") as file:
             writer = csv.DictWriter(file, fieldnames=data[0].keys())
-            writer.writeheader()
+            writer.writeheader()#Escreve o cabeçalho do arquvo 
             writer.writerows(data)
         
         return(file_path)    

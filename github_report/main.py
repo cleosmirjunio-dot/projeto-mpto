@@ -4,7 +4,6 @@ from github_report.src.github_client import GithubClient
 from github_report.src.report_service import ReportService
 from github_report.src.file_storage import FileStorage
 
-
 def generate_timestamp() -> str:
     '''Define data  e hora no nome do arquivo '''
     return datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -27,7 +26,6 @@ def parse_args():
         "--username",
         required=True,
         help="Usuário do GitHub"
-
     )
     
     parser.add_argument(
@@ -56,10 +54,8 @@ def main():
         return
 
     report = ReportService(repos)
-
-    
- # ===== Exibe o relatório no terminal =====
-    
+  
+ # ===== Exibe o relatório no terminal =====   
 
     print(f"Relatório dos repositórios de {username}")
     print("_" * 40)
@@ -88,9 +84,8 @@ def main():
 
     timestamp = generate_timestamp()    
 
-    
     repos_dict = [repo.to_dict() for repo in repos]
-    
+
     try:
         storage = FileStorage(base_path=output_dir)
     except PermissionError as e:
@@ -104,15 +99,12 @@ def main():
         f"report_{username}_{timestamp}", report_sumary
     )
 
-
     print("\nForam gerados os seguintes arquivos: ")
     print(f"- {json_file}")
-    print(f"- {csv_file}")
-    
+    print(f"- {csv_file}")  
        
-
 if __name__ == "__main__":
     main()
 
 
-   #Exemplo para rodar o codigo:    python3 -m github_report.main --username torvalds --out ./output
+   #Exemplo para rodar o codigo:   python3 -m github_report.main --username torvalds --out ./output

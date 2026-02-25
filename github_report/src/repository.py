@@ -73,6 +73,7 @@ class Repository:
             updated_at=data.get("updated_at"),
             open_issues_count=data.get("open_issues_count")
         )
+    
     def __repr__(self) -> str:
         """Retorna uma representação simples do repositório para debug."""
         return f"<repository name={self.full_name} >"
@@ -80,8 +81,10 @@ class Repository:
     def to_dict(self) -> dict:
         """Converte o repositório em dicionário para salvar em JSON ou CSV."""
         return {
-            "name": self.name,
-            "stargazers_count": self.stargazers_count,
-            "language": self.language,
-            "html_url": self.html_url,
+            "Nome": self.name,
+            "Estrelas": self.stargazers_count,
+            "Linguagem": self.language,
+            "Link": self.html_url,
+            "Atualização": self.updated_at,
+            "Problemas não resolvidos": self.open_issues_count
         }

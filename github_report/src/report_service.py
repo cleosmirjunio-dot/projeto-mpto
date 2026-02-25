@@ -32,9 +32,12 @@ class ReportService():
     def total_stars(self) -> int:
         '''Retorna a soma total de estrelas'''
         return sum(repo.stargazers_count for repo in self.repositories)
+    
+    def total_open_issues_count(self)-> int:
+        '''Retorna o total de problemas não resolvidos'''
+        return  sum(repo.open_issues_count for  repo in self.repositories)
 
     # ======= Top 5 estrelas ===========   
-
 
     def top_5_by_stars(self) -> list[Repository]:
         """
@@ -66,19 +69,20 @@ class ReportService():
     def generate_summary(self) -> list[dict]:
         '''
         Gera um resumo do relatório para 
-        exportação em CSV.
+        exportação em CSV em formato de lista de dicionário 
 
         Returns:
             list[dict]: lista contendo metricas e valores.
                     
         '''
-        sumary = [
-            {"metric": "total_repositories", "value": self.total_repositories()},
-            {"metric": "total_stars", "value": self.total_stars()},
+        summary = [
+            {"metric": "total de repositórios", "value": self.total_repositories()},
+            {"metric": "Total de estrelas", "value": self.total_stars()},
+            {"metric": "Total de Problemas não resolvidos", "value": self.total_open_issues_count()}
             
         ]
         for lang, total in self.count_by_language().items():
-            sumary.append(
-                {"metric": f"language_{lang}", "value": total}
+            summary.append(
+                {"metric": f"Linguagem_{lang}", "value": total}
             )
-        return sumary    
+        return summary    

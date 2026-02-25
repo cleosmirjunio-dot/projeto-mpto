@@ -1,3 +1,4 @@
+
 import requests
 from github_report.src.repository import Repository
 
@@ -30,7 +31,7 @@ class GithubClient:
             if response.status_code == 404:
                 raise ValueError("Usuário não encontrado")
             elif response.status_code == 403:
-                raise ValueError("Limit de requisições atingida")
+                raise ValueError("Limite de requisições atingida")
             else:
                 raise
 
